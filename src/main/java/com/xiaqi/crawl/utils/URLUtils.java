@@ -2,14 +2,14 @@ package com.xiaqi.crawl.utils;
 
 import com.xiaqi.crawl.constant.HttpConstant;
 import com.xiaqi.crawl.filter.fetch.FetchMetaData;
-import lombok.extern.java.Log;
+import lombok.extern.slf4j.Slf4j;
 
 import javax.net.ssl.HttpsURLConnection;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-@Log
+@Slf4j
 public class URLUtils {
 
     public static FetchMetaData getFetchMetaData(String url) throws IOException {
@@ -32,9 +32,13 @@ public class URLUtils {
         String uri = new URL(url).getFile();
         int lastIndex = uri.lastIndexOf('/');
         if (-1 == lastIndex) {
-            log.warning("extract filename from url [" + url + "] fail");
+            log.warn("extract filename from url [" + url + "] fail");
             return null;
         }
         return uri.substring(lastIndex + 1);
+    }
+
+    public static String getDomain(String url) {
+        return "";
     }
 }

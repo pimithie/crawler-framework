@@ -18,6 +18,9 @@
 
     <context:component-scan base-package="com.xiaqi.crawl"/>
 
+    <!-- read the thread pool configuration from file -->
+    <context:property-placeholder location="classpath:threadpool.properties" ignore-resource-not-found="true"/>
+
     <mybatis:scan base-package="com.xiaqi.crawl.dao"/>
 
     <!-- extract db properties to db.properties file -->
