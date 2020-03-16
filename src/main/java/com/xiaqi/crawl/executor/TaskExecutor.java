@@ -14,6 +14,10 @@ import java.util.Queue;
 import java.util.Set;
 import java.util.concurrent.*;
 
+/**
+ * notes :
+ * can't be used in crawling two different sites simultaneously.
+ */
 @Slf4j
 @Component
 public class TaskExecutor {
@@ -68,7 +72,7 @@ public class TaskExecutor {
 
     @PostConstruct
     public void init() {
-        this.threadpool = new ThreadPoolExecutor(coreSize,coreSize + nonCoreSize,nonCoreThreadTimeoutInSeconds, TimeUnit.SECONDS,new LinkedBlockingQueue<>(DEFAULT_TASK_QUEUE_SIZE));
+        this.threadpool = new ThreadPoolExecutor(coreSize,coreSize + nonCoreSize,nonCoreThreadTimeoutInSeconds, TimeUnit.SECONDS,new LinkedBlockingQueue<>(taskQueueSize));
     }
 
     public void setThreadpool(ExecutorService threadpool) {
